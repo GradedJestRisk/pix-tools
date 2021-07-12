@@ -1,0 +1,59 @@
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+  [[mon-pix]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 2003:129
+      maximised = False
+      fullscreen = False
+      size = 2128, 1095
+      title = Pix (mon-pix)
+      last_active_term = 0b1301ad-6197-4aaf-9816-40ad9b69057a
+      last_active_window = True
+    [[[child1]]]
+      type = VPaned
+      parent = child0
+      order = 0
+      position = 545
+      ratio = 0.5
+    [[[child2]]]
+      type = HPaned
+      parent = child1
+      order = 0
+      position = 1062
+      ratio = 0.5002355157795573
+    [[[terminal3]]]
+      type = Terminal
+      parent = child2
+      order = 0
+      profile = default
+      title = api
+      uuid = 0b1301ad-6197-4aaf-9816-40ad9b69057a
+      directory = <REPOSITORY_DIRECTORY>/api
+      command = ""
+    [[[terminal4]]]
+      type = Terminal
+      parent = child2
+      order = 1
+      profile = default
+      title = mon-pix
+      uuid = e108d10f-7916-4176-bf96-a651f5eac79b
+      command = env INIT_CMD="npm install; npm start;" zsh
+      directory = <REPOSITORY_DIRECTORY>/mon-pix
+    [[[terminal5]]]
+      type = Terminal
+      parent = child1
+      order = 1
+      profile = default
+      title = api-run
+      uuid = 5535fa25-35b3-4017-beb1-a2bf39c74c14
+      command = env INIT_CMD="<SCRIPT_DIRECTORY>/daily_start.sh" zsh
+      directory = ""

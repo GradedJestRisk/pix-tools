@@ -1,0 +1,5 @@
+#!/bin/bash
+PULL_REQUEST_NUMBER=$1
+REVIEW_APP_NAME=pix-api-review-pr${PULL_REQUEST_NUMBER}
+echo "Connecting to ${REVIEW_APP_NAME}"
+scalingo --app ${REVIEW_APP_NAME} run bash

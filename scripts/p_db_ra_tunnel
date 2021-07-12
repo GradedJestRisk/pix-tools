@@ -1,0 +1,5 @@
+#!/bin/bash
+PULL_REQUEST_NUMBER=$1
+REVIEW_APP_NAME=pix-api-review-pr${PULL_REQUEST_NUMBER}
+echo "Connecting to ${REVIEW_APP_NAME}, enabling tunnel for PostgreSQL"
+scalingo --app ${REVIEW_APP_NAME} db-tunnel SCALINGO_POSTGRESQL_URL -i <PATH-TO-SSH-KEY>

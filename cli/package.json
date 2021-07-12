@@ -1,0 +1,22 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cli.js",
+  "scripts": {
+    "start": "node cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "execa": "^5.0.0",
+    "inquirer": "^8.0.0",
+    "pg-connection-string": "^2.5.0",
+    "query-string": "^7.0.0"
+  }
+}
