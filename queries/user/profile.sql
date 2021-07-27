@@ -164,12 +164,8 @@ WHERE 1=1
 
 -- Change name
 UPDATE users
-SET "firstName" = 'Sylvain', "lastName"='Barbier'
-WHERE 1=1
---  AND id IN (1, 3)
---  AND email = 'user3pix@example.net'
-  AND username = 'sylvain.barbier2503'
-RETURNING *
+    SET "firstName" = 'John', "lastName"='Doe'
+WHERE id = 100033
 ;
 
 -- Change email

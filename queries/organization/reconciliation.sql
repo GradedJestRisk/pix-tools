@@ -40,7 +40,7 @@ SELECT
 FROM
     "schooling-registrations" sr
 WHERE 1=1
-  AND sr."nationalStudentId" = '123456789DD'
+  AND sr."nationalStudentId" = '123456789BB'
 --   AND sr."userId" IS NOT NULL
 --   AND sr."nationalStudentId" IS NOT NULL
 --    AND sr.birthdate  = '2013-07-22'
@@ -167,11 +167,12 @@ SELECT
      o."isManagingStudents" ,
     'http://localhost:4200/campagnes/' || c.code,
     'registration =>',
-     sr."updatedAt",
+     --sr."updatedAt",
     sr.id,
     sr."userId",
     sr."firstName",
     sr."lastName",
+    sr."preferredLastName",
     sr.birthdate,
     sr."nationalStudentId",
     'schooling-registrations=>',
@@ -181,7 +182,7 @@ FROM
         INNER JOIN organizations o on sr."organizationId" = o.id
         INNER JOIN campaigns c on c."organizationId" = o.id
 WHERE 1=1
-    --AND sr."userId"         IS NULL
+    AND sr."userId"         IS NULL
     --AND sr."organizationId" = 2
 --    AND o.id                =  93
     AND o.type              =  'SCO'
