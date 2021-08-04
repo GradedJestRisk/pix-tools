@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Due credits to sindresorhus
+# https://gist.github.com/sindresorhus/6465739
+
+#echo "entering post-checkout.. with arguments $@"
+#echo "current directory is"
+#pwd
+
+set -e
+
+prevHEAD=$1
+newHEAD=$2
+checkoutType=$3
+
+[[ $checkoutType == 1 ]] && checkoutType='branch' || checkoutType='file' ;
+
+[[ $checkoutType = 'branch' ]] && {
+
+    changed_files="$(git diff-tree -r --name-only --no-commit-id $prevHEAD $newHEAD)"
+    #echo "changed files are: $changed_files"
+
+    echo "$changed_files" | grep --quiet "api/db/migrations" && echo "Schema may be out of sync with code"
+    #echo "$changed_files" | grep --quiet "api/db/migrations" && echo "Updating schema" && kill -9 $(lsof -t -i:5432) && cd api && npm run db:reset && NODE_ENV=test npm run db:reset
+
+    echo "$changed_files" | grep --quiet "api/package-lock.json" && echo "Dependencies may be out of sync on api"
+    #echo "$changed_files" | grep --quiet "api/package-lock.json" && echo "Updating api dependencies" && cd api && npm install
+
+}
+
+exit 0
+
