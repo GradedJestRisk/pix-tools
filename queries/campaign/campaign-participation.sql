@@ -1,6 +1,4 @@
 
-select * from assessments
-;
 
 select * from "campaign-participations" cp
 where cp."userId" = 100060

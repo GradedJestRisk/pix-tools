@@ -13,17 +13,20 @@ WHERE 1=1
 -- profile
 -- All
 SELECT
-    u.id,
-    u."firstName",
-    u."lastName",
-    u.email,
-    u.username,
-    u."lastTermsOfServiceValidatedAt"
---    u.*
+    u.id
+    ,u."firstName"
+    ,u."lastName"
+    ,u.email
+    ,u.username
+    ,u."emailConfirmedAt"
+    ,u."lastTermsOfServiceValidatedAt"
+    ,'users=>'
+    ,u.*
 FROM users u
 WHERE 1=1
 --     AND u.id = 221573
 --    AND u.email LIKE 'geo%@example.net'
+    AND u."emailConfirmedAt" IS NOT NULL
 ORDER BY
    --u."lastName" ASC
    u."createdAt" DESC

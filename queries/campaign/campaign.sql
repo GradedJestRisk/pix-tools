@@ -2,12 +2,14 @@
 -- campaign
 -- given a code
 SELECT
-    c."organizationId",
-    c.id,
-    c.code,
-    c.name,
-    'http://localhost:4200/campagnes/' || c.code
-    --c.*
+    'campaign=>' qry
+    ,c."organizationId"
+    ,c.id
+    ,c.code
+    ,c.name
+    ,'http://localhost:4200/campagnes/' || c.code AS url
+    ,'campaigns=>'
+    ,c.*
 --    c."createdAt"
 FROM
     campaigns c

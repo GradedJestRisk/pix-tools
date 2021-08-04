@@ -7,13 +7,14 @@ SELECT acd.id
      , acd.used
      , acd."createdAt"
      , acd."schoolingRegistrationId"
-     , 'http://localhost:4200/recuperer-mon-compte/' || acd."temporaryKey" AS url
+      , 'http://localhost:4200/recuperer-mon-compte/' || acd."temporaryKey" AS url
+--     , 'https://app-pr3263.review.pix.fr/recuperer-mon-compte/' || acd."temporaryKey" AS url
      , 'account-recovery-demands=>'
      , acd.*
 FROM
      "account-recovery-demands" acd
 WHERE 1=1
-    AND acd."userId" IS NOT NULL
+--    AND acd."userId" IS NOT NULL
 ;
 
 -- Change user
@@ -89,6 +90,9 @@ FROM
      "account-recovery-demands" acd
         INNER JOIN users u ON u.id = acd."userId"
 ;
+
+DELETE FROM "account-recovery-demands"
+WHERE "userId" =  9912;
 
 
 
