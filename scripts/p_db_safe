@@ -1,0 +1,18 @@
+#!/bin/bash
+
+REGION=$1
+APPLICATION=$2
+scalingo --region $REGION --app $APPLICATION run --file ./.psqlrc "bash --init-file <(echo \" cp /tmp/uploads/.psqlrc ~/.psqlrc && dbclient-fetcher pgsql 12 && psql \$DATABASE_URL\")"
+
+# pass command to interactive bash
+# https://serverfault.com/questions/368054/run-an-interactive-bash-subshell-with-initial-commands-without-returning-to-the
+
+# \set and  \echo
+# https://dzone.com/articles/postgresqls-psql-set-vs-set
+# https://www.postgresql.org/docs/current/app-psql.html
+
+# prompt
+# https://www.postgresql.org/docs/current/app-psql.html#APP-PSQL-PROMPTING
+
+# psql variable
+# https://www.postgresql.org/docs/current/app-psql.html#APP-PSQL-VARIABLES

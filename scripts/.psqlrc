@@ -1,0 +1,16 @@
+\pset null 'NULL'
+SET default_transaction_read_only = ON;
+SET statement_timeout = 60000;
+\set enable_write 'SET default_transaction_read_only = OFF;'
+\set remove_query_timeout 'SET statement_timeout = 0;'
+\set whoami 'SELECT \'You are connected as user \' || CURRENT_USER || \' to database \' || CURRENT_DATABASE() || \' from application \' || :\'APPLICATION\' || \' on region \' || :\'REGION\';'
+\set COMP_KEYWORD_CASE upper
+\set APPLICATION `echo "$APP"`
+\set REGION `echo "$REGION_NAME"`
+\set PROMPT1 '%:APPLICATION:%R%#'
+\! clear
+\! echo "Connected to \033[0;32m $APP \033[0m database (region $REGION_NAME) "
+\echo 'You are restricted to run read-only queries not exceeding 1 minute'
+\echo 'Type :enable_write to issue SELECT/INSERT/UPDATE queries'
+\echo 'Type :remove_query_timeout to let query run as long as necessary'
+\echo 'Type :whoami to get details on current connection'
