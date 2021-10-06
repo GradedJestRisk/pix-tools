@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+LINT_STAGED_CONFIG='{"*.js": "eslint", "*.hbs": "ember-template-lint", "*.scss": "stylelint"}'
+STAGED_IN_DIRECTORY=$(git diff --name-only --cached | head -1 | cut -d "/" -f1)
+
+if [ -n "$STAGED_IN_DIRECTORY" ]; then
+  printf "\033[0;32m✔\033[0m Changed directory to /$STAGED_IN_DIRECTORY\n"
+  cd $STAGED_IN_DIRECTORY && echo $LINT_STAGED_CONFIG | npx lint-staged -c -
+fi
