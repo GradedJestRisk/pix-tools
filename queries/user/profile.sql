@@ -195,8 +195,8 @@ INSERT INTO users ( "firstName", "lastName", password)
 VALUES ('John', 'Doe', 'f4z5zqcf5e51');
 
 
-INSERT INTO users ( id, "firstName", "lastName", password)
-VALUES (-1, 'John', 'Doe', 'f4z5zqcf5e51');
+INSERT INTO users ( "firstName", "lastName")
+VALUES ('John', 'Doe');
 
 SELECT * FROM users WHERE id =-1;
 

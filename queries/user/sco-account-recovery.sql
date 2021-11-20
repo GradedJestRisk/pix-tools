@@ -91,8 +91,27 @@ FROM
         INNER JOIN users u ON u.id = acd."userId"
 ;
 
+----------------------------------------
+--- COMMAND
+----------------------------------------
+
 DELETE FROM "account-recovery-demands"
 WHERE "userId" =  9912;
 
 
 
+-- Account recovery demand
+SELECT acd.*
+FROM
+     "account-recovery-demands" acd
+WHERE 1=1
+--    AND acd."userId" IS NOT NULL
+;
+
+
+-- INSERT
+INSERT INTO "account-recovery-demands"
+    ("userId", "oldEmail", "newEmail", "temporaryKey", used, "schoolingRegistrationId")
+VALUES
+    (100065, NULL, 'philipe@example.net', 'temporary-key', FALSE,  NULL)
+;

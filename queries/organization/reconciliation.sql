@@ -148,7 +148,6 @@ WHERE 1=1
 --  AND "samlId" IS NOT NULL
   AND username IS NULL
   AND email    IS NULL
-  AND password IS NOT NULL
   AND NOT EXISTS (
       SELECT 1
       FROM "schooling-registrations" sr INNER JOIN organizations o on sr."organizationId" = o.id
@@ -240,13 +239,13 @@ WHERE 1=1
     AND o.type = 'SCO'
    -- AND DATE(sr."updatedAt") = CURRENT_DATE
 --    AND u.username IS NOT NULL
-    --  AND u."firstName" LIKE '%morm%'
+--      AND u."firstName" LIKE '%morm%'
     --AND u.email = 'blueivy.carter@example.net'
 --    AND u.id   = 100018
   --AND u."samlId" IS  NULL
   --AND u."firstName" = 'user'
    -- AND sr."nationalStudentId" = '123456789BB'
---    AND  u.email = 'user.pix@example.net'
+    AND  u.email = 'mormont.lyanna@example.net'
 ORDER BY
     u."createdAt" DESC
 ;
@@ -284,6 +283,7 @@ FROM
 WHERE 1=1
     --AND sr."organizationId" = 7930
     AND o.type = 'SCO'
+    AND o.name = 'Collège The Night Watch'
    -- AND DATE(sr."updatedAt") = CURRENT_DATE
 --    AND u.username IS NOT NULL
 --    AND u.email IS NOT NULL
@@ -292,6 +292,7 @@ WHERE 1=1
   --AND u."firstName" = 'user'
 --    AND sr."nationalStudentId" = '345678901AB'
 --    AND  u.email = 'user.pix@example.net'
+    AND am."identityProvider" = 'GAR'
 ORDER BY
     o.id,
     u."createdAt" DESC

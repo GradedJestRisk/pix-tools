@@ -22,6 +22,27 @@ ORDER BY
 ;
 
 
+-- campaign + creator
+-- given a code
+SELECT
+    'campaign=>' qry
+    ,c.id
+    ,c.code
+    ,c.name
+    ,'user=>'
+    ,u.id
+    ,u.email
+    , u.username
+FROM
+    campaigns c INNER JOIN users u ON u.id = c."creatorId"
+WHERE 1=1
+  AND code IN ('VZFEYL424', 'SDGZMR242', 'ZDMPTY623')
+ORDER BY
+    c."organizationId",
+    c.code
+;
+
+
 -- campaign
 -- given a organization
 SELECT
@@ -76,7 +97,8 @@ SELECT
     c.id campaign_dtf,
     c.code,
     c.name,
-    'http://localhost:4200/campagnes/' || c.code,
+    --'http://localhost:4200/campagnes/' || c.code,
+    'https://app-pr3316.review.pix.fr/campagnes/' || c.code,
     '-'
     --,o.*
 --    c."createdAt"
@@ -85,12 +107,12 @@ FROM
         INNER JOIN organizations o on c."organizationId" = o.id
 WHERE 1=1
 --  AND c.id = 6
-   --AND c.code = 'ZVDMJC924'
+     AND c.code = 'BADGES123'
 --    AND c."archivedAt" IS NULL
  --   AND c."organizationId" = 3
     -- AND o.id   <>  3
      AND o.type = 'SCO'
-     --AND o.name = 'Collège The Night Watch'
+     AND o.name = 'Collège The Night Watch'
     AND o."isManagingStudents" = true
     --AND c.type = 'ASSESSMENT'
 ORDER BY
