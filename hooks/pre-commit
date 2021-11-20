@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LINT_STAGED_CONFIG='{"*.js": "eslint --fix", "*.hbs": "ember-template-lint", "*.scss": "stylelint"}'
+LINT_STAGED_CONFIG='{"*.{js,yml}":"eslint --fix","*.hbs": "ember-template-lint", "*.scss": "stylelint"}'
 STAGED_IN_DIRECTORY=$(git diff --name-only --cached | head -1 | cut -d "/" -f1)
 
 if [ -n "$STAGED_IN_DIRECTORY" ]; then
