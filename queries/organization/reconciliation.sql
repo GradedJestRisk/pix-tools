@@ -161,36 +161,40 @@ WHERE 1=1
 --  given an organization identifier
 SELECT
     'organization =>',
-     o.id,
-     o.name,
-     o."isManagingStudents" ,
-    'http://localhost:4200/campagnes/' || c.code,
-    'registration =>',
-     --sr."updatedAt",
-    sr.id,
-    sr."userId",
-    sr."firstName",
-    sr."lastName",
-    sr."preferredLastName",
-    sr.birthdate,
-    sr."nationalStudentId",
-    'schooling-registrations=>',
-    sr.*
+--      o.id,
+--      o.name,
+ --    o."isManagingStudents" ,
+--     'http://localhost:4200/campagnes/' || c.code,
+--     'registration =>',
+--      --sr."updatedAt",
+--     sr.id,
+--     sr."userId",
+     sr."firstName",
+     sr."lastName",
+--     sr."preferredLastName",
+--     sr.birthdate,
+--     sr."nationalStudentId",
+--     'schooling-registrations=>',
+--     sr.*
+    sr."createdAt",
+    sr."updatedAt"
 FROM
     "schooling-registrations" sr
         INNER JOIN organizations o on sr."organizationId" = o.id
         INNER JOIN campaigns c on c."organizationId" = o.id
 WHERE 1=1
-    AND sr."userId"         IS NULL
+   -- AND sr."userId"         IS NULL
     --AND sr."organizationId" = 2
 --    AND o.id                =  93
     AND o.type              =  'SCO'
-   -- AND o.name              = 'Collège The Night Watch'
-    AND o."isManagingStudents"   IS true
+    AND o.name              = 'Collège The Night Watch'
+ --   AND o."isManagingStudents"   IS true
 --    AND sr."lastName" = 'Adam'
   -- AND sr."firstName" = 'ADAM'
   --  AND sr."nationalStudentId" = '123456789CC'
   --AND "nationalStudentId" =
+ORDER BY
+    sr."createdAt" DESC
 ;
 
 

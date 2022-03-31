@@ -36,11 +36,27 @@ FROM "users_pix_roles" ur
     INNER JOIN users u on ur.user_id = u.id
     INNER JOIN pix_roles r on ur.pix_role_id = r.id
 WHERE 1=1
-    AND r.name = 'PIX_MASTER'
+    AND r.name  = 'PIX_MASTER'
+    AND u.email =  'service+pix@pix.fr'
 ;
 
+select
+    *
+from "users"
+         inner join "users_pix_roles" on "users_pix_roles"."user_id" = "users"."id"
+         inner join "pix_roles" on "pix_roles".id = "users_pix_roles"."pix_role_id"
+where 1=1
+ and "pix_roles"."name" = 'PIX_MASTER'
+--  and "users"."email" = 'pixmaster@example.net'
+;
 
-
+select
+    "users"."id"
+from "users"
+         inner join "users_pix_roles" on "users_pix_roles"."user_id" = "users"."id"
+         inner join "pix_roles" on "pix_roles"."id" = "users_pix_roles"."pix_role_id"
+where ""pix_roles"."name" = 'PIX_MASTER'
+;
 
 -----------------------------------------------
 

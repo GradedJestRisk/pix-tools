@@ -3,14 +3,17 @@ SELECT
      cc.id
     ,cc.name
     ,cc.type
+    ,cc."isSupervisorAccessEnabled"
     ,'certification-centers=>'
     ,cc.*
 FROM "certification-centers" cc
 WHERE 1=1
 --    AND cc.id = 1
 --    AND cc.type = 'SCO'
-    AND cc.type IS NULL
+--    AND cc.type IS NULL
 --    AND cc."externalId" = '1237457A'
+--    AND cc.name = 'Centre PRO des Anne-Étoiles'
+    AND cc."isSupervisorAccessEnabled" IS TRUE
 ;
 
 
@@ -32,9 +35,11 @@ SELECT
 FROM
      "certification-centers" cc INNER JOIN organizations o on cc."externalId" = o."externalId"
 WHERE 1=1
---    AND cc.id = 1
+   -- AND cc.id = 6
 --      AND cc.name = 'Centre SCO des Anne-Étoiles'
+    AND cc.name ILIKE '%EDU%'
 --    AND cc.type = 'SCO'
+--    AND o."isManagingStudents" IS FALSE
 --      AND cc."externalId" = '1237457A'
 ;
 
@@ -44,3 +49,7 @@ VALUES ('foo', 'SCO');
 
 INSERT INTO "certification-centers" (name, type)
 VALUES ('foo', NULL);
+
+
+UPDATE "certification-centers" SET "isSupervisorAccessEnabled" = TRUE
+WHERE name = 'Centre PRO des Anne-Étoiles';

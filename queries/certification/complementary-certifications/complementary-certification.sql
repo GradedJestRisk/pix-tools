@@ -7,6 +7,9 @@ FROM
  "complementary-certifications" crt_cmp
 ;
 
+INSERT INTO "complementary-certifications" (name)
+VALUES ('Pix+ Edu');
+
 SELECT nextval('complementary-certifications_id_seq');
 
 

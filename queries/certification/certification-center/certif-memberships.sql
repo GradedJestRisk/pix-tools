@@ -45,8 +45,8 @@ FROM "certification-centers" cc
     INNER JOIN users u ON u.id = ccm."userId"
 WHERE 1=1
  -- AND u.email IS NULL
-  AND cc.id   = 6
- -- AND cc.name         = 'Centre SCO des Anne-Étoiles'
+ -- AND cc.id   = 6
+ AND cc.name         = 'Centre AEFE SCO NO MANAGING STUDENTS des Anne-Étoiles'
 --  AND cc."externalId" = '1237457A'
 --    AND cc.type = 'SCO'
 ;
