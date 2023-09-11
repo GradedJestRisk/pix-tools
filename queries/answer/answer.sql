@@ -2,6 +2,7 @@ SELECT *
 FROM answers a
 WHERE 1=1
 --    AND a."assessmentId" = 13003
+ORDER BY id DESC
 ;
 
 -- User + Assessment + Answer

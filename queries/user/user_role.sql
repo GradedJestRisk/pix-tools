@@ -67,7 +67,7 @@ SELECT id FROM users WHERE email = 'pierre.top@pix.fr'
 --100008
 
 INSERT INTO "users_pix_roles" (user_id, pix_role_id)
-VALUES (10000002, 1)
+VALUES (670450, 1)
 ;
 
 ALTER TABLE users_pix_roles

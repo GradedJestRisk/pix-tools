@@ -16,15 +16,16 @@ SELECT
   , cc."isPublished"
   , 'complementary-certifications =>'
   , pc."partnerKey"
-  , pc."temporaryPartnerKey"
+  --, pc."temporaryPartnerKey"
   , pc.acquired
     -- ,pc.*
 FROM "certification-courses" cc
-         INNER JOIN "partner-certifications" pc ON pc."certificationCourseId" = cc.id
+         INNER JOIN "complementary-certification-courses" a ON a."certificationCourseId" = cc.id
+         INNER JOIN "complementary-certification-course-results" pc ON pc."complementaryCertificationCourseId" = a.id
          INNER JOIN users u ON u.id = cc."userId"
          INNER JOIN sessions s on cc."sessionId" = s.id
 WHERE 1 = 1
-  AND cc.id = 200
+ -- AND cc.id = 200
   --  AND u.email = 'certifedu.initiale@example.net'
   --     AND s.id = 5
   --  AND s.date = '2022/02/11'

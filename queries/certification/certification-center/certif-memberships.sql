@@ -1,3 +1,37 @@
+
+-- Certification center membership
+SELECT
+    ccm.*
+FROM "certification-center-memberships" ccm
+WHERE 1=1
+--    AND ccm.id = 1
+   AND ccm."certificationCenterId" = 1
+ORDER BY
+    ccm.id ASC
+;
+
+
+-- Certification center + membership
+SELECT
+    'certification center=>'
+    ,cc.id
+    ,cc.name
+    ,cc."externalId"
+    --,cc.type
+    ,'membership=>'
+    ,ccm.id
+    ,ccm."createdAt"
+FROM "certification-centers" cc
+    INNER JOIN "certification-center-memberships" ccm ON ccm."certificationCenterId" = cc.id
+WHERE 1=1
+ -- AND u.email IS NULL
+--  AND cc.id   = 3
+--  AND cc.name         = 'Centre SCO des Anne-Étoiles'
+  AND cc."externalId" = 'EXTERNAL-ID'
+--    AND cc.type = 'SCO'
+;
+
+
 -- User that may become members
 SELECT
      'user=>'
@@ -44,24 +78,45 @@ FROM "certification-centers" cc
     INNER JOIN "certification-center-memberships" ccm ON ccm."certificationCenterId" = cc.id
     INNER JOIN users u ON u.id = ccm."userId"
 WHERE 1=1
- -- AND u.email IS NULL
- -- AND cc.id   = 6
- AND cc.name         = 'Centre AEFE SCO NO MANAGING STUDENTS des Anne-Étoiles'
---  AND cc."externalId" = '1237457A'
+ --AND u.email IS NULL
+ AND cc.id   = 6
+ --AND cc.name         = 'Centre AEFE SCO NO MANAGING STUDENTS des Anne-Étoiles'
+--  AND cc."externalId" = 'EXTERNAL-ID'
 --    AND cc.type = 'SCO'
 ;
 
 
--- Certification center membership
+-- session + Certification center + membership
 SELECT
-    ccm.*
-FROM "certification-center-memberships" ccm
+    'session=>'
+    ,s.id
+    ,'certification center=>'
+    ,cc.id
+    ,cc.name
+    ,cc."externalId"
+    --,cc.type
+    ,'membership=>'
+    ,ccm.id
+    ,ccm."createdAt"
+    ,'user=>'
+--    ,u.id
+    ,u.email
+    ,u."firstName"
+    ,u."lastName"
+FROM "certification-centers" cc
+    INNER JOIN "certification-center-memberships" ccm ON ccm."certificationCenterId" = cc.id
+    INNER JOIN users u ON u.id = ccm."userId"
+    INNER JOIn sessions s ON s."certificationCenterId" = cc.id
 WHERE 1=1
---    AND ccm.id = 1
-   AND ccm."certificationCenterId" = 1
-ORDER BY
-    ccm.id ASC
+    AND s.id = 1
+ --AND u.email IS NULL
+ --AND cc.id   = 1
+ --AND cc.name         = 'Centre AEFE SCO NO MANAGING STUDENTS des Anne-Étoiles'
+--  AND cc."externalId" = 'EXTERNAL-ID'
+--    AND cc.type = 'SCO'
 ;
+
+
 
 
 -- Certification center + membership

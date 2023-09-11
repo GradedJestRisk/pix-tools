@@ -1,7 +1,7 @@
 # Database
 
 ## Accounts
-KeypassXC database reference account created by http://github.com/1024pix/pix/blob/dev/api/db/database-builder
+KeepassXC database reference account created by http://github.com/1024pix/pix/blob/dev/api/db/database-builder
 These accounts are generic and can only be used in local development and review apps
 Most accounts use a default password (pix123), so combining KeePassXC with KeepassXC Browser will allow you to connect effortlessly.
 

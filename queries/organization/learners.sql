@@ -2,28 +2,32 @@
 -------- QUERY  -------------------------
 -------------------------------------------
 
--- schooling registration
+-- learner
 -- given organization / id
 SELECT
-    sr.id,
-    sr."nationalStudentId",
-    sr."organizationId",
-    sr."userId",
-    'confirm=>',
-    sr."firstName",
-    sr."lastName",
-    sr.birthdate,
-    'registration =>',
-    sr.*
+    'learner=>'
+    ,sr.id
+    ,sr."nationalStudentId"
+    ,sr."organizationId"
+    ,sr."userId"
+    ,'confirm=>'
+    ,sr."firstName"
+    ,sr."lastName"
+    ,sr.birthdate
+    ,'other=>'
+    ,sr."division"
+    ,'organization-learners =>'
+    ,sr.*
 FROM
-    "schooling-registrations" sr
+    "organization-learners" sr
 WHERE 1=1
- -- AND sr.id = 100026
+  --AND sr.id = 7254023
  -- AND sr."organizationId" = 3
 --    AND sr."firstName" = 'user'
 --    AND sr."lastName" = 'gar'
 --    AND sr.birthdate  = '2010-09-30'
-    AND sr."userId" IS NULL
+--    AND sr."userId" IS NULL
+    AND sr."division" = '5D'
 ;
 
 -- schooling registration
@@ -179,10 +183,11 @@ SELECT
     sr."createdAt",
     sr."updatedAt"
 FROM
-    "schooling-registrations" sr
+     "organization-learners" sr
         INNER JOIN organizations o on sr."organizationId" = o.id
         INNER JOIN campaigns c on c."organizationId" = o.id
 WHERE 1=1
+  AND sr.id = 7254023
    -- AND sr."userId"         IS NULL
     --AND sr."organizationId" = 2
 --    AND o.id                =  93
@@ -570,6 +575,24 @@ UPDATE "schooling-registrations"
 SET "nationalStudentId" =  'TOTO'
 WHERE 1=1
   AND  id = 100026
+;
+
+
+SELECT DISTINCT o.id, o.name, ol.division
+FROM "organization-learners" ol
+    INNER JOIN organizations o on ol."organizationId" = o.id
+WHERE 1=1
+AND ol.division LIKE '%+%'
+AND ol."userId" IS NULL
+;
+
+-- Update INE
+-- on id
+UPDATE "organization-learners"
+SET "division" =  'a+b'
+WHERE 1=1
+  AND id = 99
+  AND division = '2,00E+02'
 ;
 
 

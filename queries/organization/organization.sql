@@ -9,15 +9,16 @@ SELECT
   o."externalId",
   o."logoUrl"
  --'organization => ',
- --o.*
+ --,o.*
 FROM
      organizations o
 WHERE 1=1
-    AND o.type = 'SCO'
+    --AND o.type = 'SCO'
  --   AND o.id = 4
 --    AND o.id IN (78, 10, 48, 37)
   --  AND o.name = 'COMPTE DE TEST: SCO #2'
  --   AND o."externalId" = '1237457A'
+    AND o."externalId" = 'EXABC123'
 ORDER BY
     o.id ASC
 LIMIT 10
@@ -56,6 +57,65 @@ WHERE 1=1
  --   AND o.name = 'Dragon & Co'
    AND o."isManagingStudents" = true
 ;
+
+
+
+-- organization
+SELECT
+    o."externalId",
+    COUNT(1)
+FROM
+     organizations o
+WHERE 1=1
+    AND o."externalId" IS NOT NULL
+GROUP BY
+    o."externalId"
+HAVING COUNT(1) > 1
+;
+
+
+-- organization
+SELECT
+    o."externalId",
+    o.type,
+    COUNT(1)
+FROM
+     organizations o
+WHERE 1=1
+    AND o."externalId" IS NOT NULL
+    AND o."archivedAt" IS NULL
+GROUP BY
+    o."externalId", o.type
+HAVING COUNT(1) > 1
+;
+
+
+ALTER TABLE organizations
+ADD CONSTRAINT "unique_organization_external-id" UNIQUE(type, "externalId")
+;
+
+SELECT
+    'organization'
+    ,o.id
+    ,o.name
+    ,o.type
+    ,o."externalId"
+    ,o."isManagingStudents"
+    ,o."archivedAt"
+   -- 'organization => ',
+   -- o.*
+FROM organizations o
+WHERE 1 = 1
+  AND o."externalId" IN (
+                         '90186617800014'
+                         '22170001600738',
+                         '26770275100020',
+                         '89042165400017',
+                         '82422814200017')
+;
+
+
+
 
 --
 SELECT *

@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+if (Est-ce qu'il est possible de se connecter ?) then (n)
+    if (Est-ce que le traffic est normal ?) then (oui)
+        : Bar;
+    else (Non)
+            if (La route /api/features-toggles répond-elle ?) then (oui)
+                : Bar;
+            else (Non)
+                : L'auto-scaler a-t-il instancié \nle nombre maximal de conteneurs ?;
+            endif
+    endif
+else (Non)
+    : L'auto-scaler a-t-il instancié \nle nombre maximal de conteneurs ?;
+endif
+
+@enduml

@@ -1,12 +1,14 @@
 -- Authentication method
 -- all
 SELECT
-    am."externalIdentifier"
+    am."identityProvider"
+    ,am."externalIdentifier"
+    ,am.*
 FROM
      "authentication-methods" am
 WHERE 1=1
-    AND am.id = 22530
-    AND am."identityProvider" = 'POLE_EMPLOI'
+    AND am."userId" = 106013
+  --  AND am."identityProvider" = 'POLE_EMPLOI'
 --     AND u.id =
 ;
 
@@ -39,10 +41,11 @@ SELECT
 --    am.*
 FROM
      users   u
-     INNER JOIN "authentication-methods" am ON am."userId" = u.id
+        INNER JOIN "authentication-methods" am ON am."userId" = u.id
 WHERE 1=1
-    AND u."firstName" = 'BALKINE'
+    --AND u."firstName" = 'BALKINE'
     --AND am."identityProvider" = 'PIX'
+    AND u.email = 'billy.thekid106013@example.net'
 ;
 
 

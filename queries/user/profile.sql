@@ -25,8 +25,11 @@ SELECT
 FROM users u
 WHERE 1=1
 --     AND u.id = 221573
+--    AND u."lastName" ILIKE '%pierre%'
+   AND u."firstName" = 'Jean-Pierre'
 --    AND u.email LIKE 'geo%@example.net'
-    AND u."emailConfirmedAt" IS NOT NULL
+   -- AND u.email = 'billy.thekid106013@example.net'
+--    AND u."emailConfirmedAt" IS NOT NULL
 ORDER BY
    --u."lastName" ASC
    u."createdAt" DESC
@@ -69,22 +72,12 @@ ORDER BY u.username ASC
 -- profile
 -- Given email
 SELECT
-    u.id,
-    u."firstName",
-    u."lastName",
-    u.email,
-    u.password,
-    u."samlId"
---    u.*
+    u.id
 FROM users u
 WHERE 1=1
 --     AND u.id = 220610
     --AND u.email LIKE '%@example.net'
-    AND u.email IN (
-        'leo.jacquemin@pix.fr',
-        'abdelmalek.ouarab@pix.fr',
-        'elise.dartois@pix.fr')
-    --AND u.email LIKE '%jau%'
+    AND u.email = '
 ORDER BY u.email ASC
 ;
 
@@ -191,8 +184,8 @@ RETURNING *
 
 
 -- Create user with password
-INSERT INTO users ( "firstName", "lastName", password)
-VALUES ('John', 'Doe', 'f4z5zqcf5e51');
+INSERT INTO users ( "firstName", "lastName", "email")
+VALUES ('John', 'Doe', 'john.doe@pix.fr');
 
 
 INSERT INTO users ( "firstName", "lastName")

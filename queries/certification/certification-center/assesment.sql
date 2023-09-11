@@ -8,7 +8,7 @@ SELECT
     ,ssm.*
 FROM assessments ssm
 WHERE 1=1
- --   AND ssm.id = 10000000
+    AND ssm.id = 18007
 ;
 
 
@@ -42,9 +42,9 @@ WHERE 1 = 1
 
 -- score
 SELECT *
-FROm "assessment-results" asr
-where 1=1
-    and asr."assessmentId" = 13003
+FROM "assessment-results" asr
+WHERE 1=1
+    AND asr."assessmentId" = 13003
 ;
 
 
@@ -66,4 +66,12 @@ FROM answers
 INNER JOIN "assessments" ON "answers"."assessmentId" = "assessments"."id"
 INNER JOIN "users" ON "assessments"."userId" = "users"."id"
 WHERE "assessments"."userId" IN (10000068)
-GROUP BY "assessments"."userId", "users"."id"
+GROUP BY "assessments"."userId", "users"."id";
+
+-- Autoriser la reprise du parcours dans l'espace surveillant (ne pas avoir le statut "Terminé")
+UPDATE assessments
+SET state = 'started'
+WHERE id = 52939699;
+
+SELECT DISTINCT state
+FROM assessments;

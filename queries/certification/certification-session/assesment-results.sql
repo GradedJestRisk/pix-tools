@@ -9,7 +9,7 @@ WHERE 1 = 1
 
 
 
-
+-- Results + Session  + Course
 SELECT
     'center=>',
     crt.name "centerName",
@@ -33,6 +33,7 @@ SELECT
     asr."pixScore",
     asr.emitter,
     asr.status,
+    asr."reproducibilityRate",
     asr."createdAt"
 FROM sessions s
          INNER JOIN "certification-centers" crt ON crt.id = s."certificationCenterId"
@@ -44,7 +45,7 @@ WHERE 1 = 1
    -- AND ass.id = 108510
    --AND ass.state = 'completed'
    --AND asr.status = 'validated'
-  AND s.id = 20001
+  AND s.id = 20003
   --AND cc."userId" = 104
   -- AND s."date" = '2022-02-11'
   --   AND s."publishedAt" IS NULL

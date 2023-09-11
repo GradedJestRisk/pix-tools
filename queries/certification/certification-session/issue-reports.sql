@@ -2,34 +2,24 @@ SELECT * FROM sessions;
 
 SELECT * FROM "certification-issue-reports" r
 WHERE 1=1
-    AND r.id = 49000
+--    AND r.id = 49000
+   -- AND r."certificationCourseId" = 18007
+ORDER BY r.id DESC
 ;
 
 
 
-INSERT INTO public."certification-issue-reports"
-    ( "certificationCourseId", category, subcategory, description, "questionNumber",
-     resolution, "resolvedAt",
-     "createdAt", "updatedAt")
-VALUES ( 106852, 'IN_CHALLENGE','UNINTENTIONAL_FOCUS_OUT', NULL , 3,
-        NULL, NULL,
-        NOW(), NOW()
-);
-
-SELECT id, c."sessionId" FROM "certification-courses" c;
+SELECT id, c."sessionId" FROM "certification-courses" c
+WHERE id = 18007
+;
 
 
 -- Reports + Sessions
 SELECT
-    cc.name,
     'session=>',
     s.id "id",
     s."finalizedAt",
     --s."juryCommentAuthorId" "juryId",
-    --'user =>',
-    u."firstName",
-    u."lastName",
-    c.id,
     --'course=>',
     --c."userId",
     --c."firstName",
@@ -45,25 +35,27 @@ SELECT
     r."resolvedAt"
     --r.resolution
     --,'certification-issue-reports=>'
-    ,r.*
+    --,r.*
 FROM "certification-issue-reports" r
     INNER JOIN "certification-courses" c ON c.id = r."certificationCourseId"
     INNER JOIN "sessions" s ON s.id = c."sessionId"
-    INNER JOIN users u ON u.id = c."userId"
-    INNER JOIN "certification-centers" cc On cc.id = s."certificationCenterId"
 WHERE 1=1
   --AND  u."firstName" = 'AnneNormale5'
-    --AND s.id = 20000
+    AND s.id = 83626
     --AND c.id = 107201
    -- AND r.id = 107193
 --     AND c."userId" = 110
- --   AND r.category = ''
+   --AND r.category = 'FILE_NOT_OPENING'
+   --AND r.subcategory = 'FILE_NOT_OPENING'
 --    AND r.description = 'Elle a pas fini sa certif (deuxième fois)'
  --  AND s."finalizedAt" IS NOT NULL
  --  AND r."resolvedAt" IS NULL
-    AND s."finalizedAt" IS NULL
+   -- AND s."finalizedAt" IS NULL
 ORDER BY s.id, r.category, r.description
 ;
+
+
+-- Reports + Sessions + Users + Centers
 
 UPDATE "certification-issue-reports" r
 SET "resolvedAt" = NULL, resolution = NULL
@@ -151,6 +143,18 @@ WHERE 1=1
     AND s."finalizedAt" IS NOT NULL
     AND r."resolvedAt" IS NULL
 ;
+
+
+
+
+INSERT INTO public."certification-issue-reports"
+    ( "certificationCourseId", category, subcategory, description, "questionNumber",
+     resolution, "resolvedAt",
+     "createdAt", "updatedAt")
+VALUES ( 106852, 'IN_CHALLENGE','UNINTENTIONAL_FOCUS_OUT', NULL , 3,
+        NULL, NULL,
+        NOW(), NOW()
+);
 
 
 

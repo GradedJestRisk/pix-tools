@@ -41,7 +41,7 @@ FROM
          INNER JOIN "complementary-certification-habilitations" crt_cmp_hbl ON crt_cmp_hbl."certificationCenterId" = crt_cnt.id
          INNER JOIN "complementary-certifications" crt_cmp ON crt_cmp.id = crt_cmp_hbl."complementaryCertificationId"
 WHERE 1=1
---    AND cc.id = 1
+    AND crt_cnt.id = 31000
      -- AND crt_cnt.name = 'Centre SCO des Anne-Étoiles'
 --    AND cc.type = 'SCO'
 --      AND cc."externalId" = '1237457A'
@@ -54,6 +54,39 @@ SELECT
 FROM
    "complementary-certification-badges" cmpl_crt_bdg
 ;
+
+SELECT
+    'courses=>'
+    ,cmpl_crt_crs.*
+FROM
+   "complementary-certification-courses" cmpl_crt_crs
+WHERE 1=1
+   -- AND cmpl_crt_crs
+;
+
+
+SELECT
+    'complementary certification=>'
+    --,ccc.id
+    ,ccc.name
+    ,'courses=>'
+    ,cc."firstName"
+    ,cc."lastName"
+    ,cc.birthdate
+    ,cc."sessionId"
+    ,cc."isPublished"
+    --,'complementary-certifications=>'
+    --,cc.*
+FROM
+   "complementary-certification-courses" cmpl_crt_crs
+        INNER JOIN "complementary-certifications" ccc ON ccc.id = cmpl_crt_crs."complementaryCertificationId"
+        INNER JOIN "certification-courses" cc ON cc.id = cmpl_crt_crs."certificationCourseId"
+WHERE 1=1
+   AND ccc.name = 'Pix+ Droit'
+
+;
+
+
 
 -- badges
 SELECT

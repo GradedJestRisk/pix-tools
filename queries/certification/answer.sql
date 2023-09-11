@@ -6,6 +6,7 @@ WHERE 1=1
 
 -- Session + Answer + Assessment
 SELECT
+    row_number() over (order by ans."createdAt"),
     crt.name        "centerName",
     s.id            "sessionId",
     'assessment=>',
@@ -31,16 +32,16 @@ FROM sessions s
          INNER JOIN assessments ass ON ass."certificationCourseId" = cc.id
          INNER JOIN answers ans on ans."assessmentId" = ass.id
 WHERE 1 = 1
-  AND s.id = 13
+  --AND s.id = 20000
   --AND cc."userId" = 104
   --AND s."date" = '2022-02-11'
-  --AND cc.id = 18002
+  AND cc.id = 1614976
   -- AND ans.result <> 'ok'
   --  AND ans.value <> '#ABAND#'
 --   AND ans."createdAt" BETWEEN '2022-02-11 11:00:00.000000 +00:00' AND '2022-02-11 18:00:00.000000 +00:00'
 --  AND s."publishedAt" IS NOT NULL
 --   AND ans."challengeId" IN ('rec6m0IwAPju8VhXr', 'recC9Bgcmus1udujY')
-ORDER BY s.id, cc."userId", ans."createdAt"
+ORDER BY s.id, cc."userId", ans."createdAt" ASC
 ;
 
 SELECT '{ result: "' || a.result || '", challengeId: "' || a."challengeId" || '", resultDetails: "' || a.value|| '" },'

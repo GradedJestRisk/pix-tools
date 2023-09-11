@@ -18,10 +18,12 @@ INSERT INTO  "supervisor-accesses"
 VALUES
 ();
 
---
+-- Activation
 SELECT name
 FROM "certification-centers" cc
-WHERE cc."isSupervisorAccessEnabled" IS TRUE
+WHERE 1=1
+    AND cc.id =
+--    AND cc."isSupervisorAccessEnabled" IS TRUE
 ;
 
 UPDATE "certification-centers" cc

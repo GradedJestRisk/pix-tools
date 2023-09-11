@@ -1,4 +1,22 @@
 
+--  Assessment
+SELECT
+    'assessment=>'
+    ,ass.id
+    ,ass."lastQuestionState"
+    ,ass."lastChallengeId"
+    ,ass."lastQuestionDate"
+    --,'assessments=>'
+    --,ass.*
+FROM assessments ass 
+WHERE 1 = 1
+ORDER BY ass."createdAt" DESC
+LIMIT 5
+;
+
+
+
+
 -- User + Assessment
 SELECT
     'user=>'
@@ -23,3 +41,5 @@ WHERE 1 = 1
 ORDER BY ass."createdAt" DESC
 LIMIT 5
 ;
+
+
